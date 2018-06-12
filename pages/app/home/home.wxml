@@ -1,0 +1,14 @@
+<view class='container'>
+  <import src="../../../components/recommondlist.wxml"></import>
+  <view class='searchBar'>
+    <input type='text' placeholder='搜索' placeholder-style='font-size: 14px;color: #999999;text-align: center;' class='search' bindfocus='goSearch'></input>
+  </view>
+  <view class='navBar'>
+    <view>最热</view>
+    <view>人物</view>
+    <view>实验</view>
+    <view>治愈系</view>
+    <view>事件</view>
+  </view>
+  <template is="recommondlist" data="{{item,video}}" wx:for="{{movieList}}" wx:key="{{index}}"></template>
+</view>
