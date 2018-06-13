@@ -12,7 +12,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.showShareMenu({
+      withShareTicket: true
+    })
   },
 
   /**
@@ -47,15 +49,33 @@ Page({
   * 切换底部tab
   */
   switchTab(e) {
-    console.log(e)
-    this.setData({ currentTab: e.currentTarget.dataset.current });
+    // console.log(e.currentTarget.dataset.current)
+    this.setData({ currentTab: e.currentTarget.dataset.current});
+    if (e.currentTarget.dataset.current==1){
+      wx.setNavigationBarTitle({
+        title: '个人中心',
+      })
+    }
   },
   onReachBottom(){
-    
+    // console.log(e);
     var home=this.selectComponent(".home");
     if(home.data.isLoading){
       return;
     };
     home.getList("up");
+  },
+  onShareAppMessage(ops){
+    if(ops.from==='button'){
+
+    }
+    var data=ops.target.dataset.item;
+    if(!data){
+      return
+    }
+    return {
+      title:data.title,
+      // page:"/"
+    }
   }
 })

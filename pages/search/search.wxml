@@ -1,0 +1,15 @@
+<!--pages/search/search.wxml-->
+<import src="/components/recommondlist.wxml"></import>
+<view>
+  <view class='search-wrapper'>
+    <view class='search-box'>
+      <image class='search-icon'></image>
+      <input type='text' confirm-type="search" placeholder='搜索' placeholder-style='font-size:26rpx' class='search'></input>
+    </view>
+    <text class='cancel' catchtap='cancel'>取消</text>
+  </view>
+  <view wx:if="{{searchData}}">
+    <template is="recommondlist"></template>
+  </view>
+  <view wx:elif="{{!search_data&&searchRecord}}"></view>
+</view>

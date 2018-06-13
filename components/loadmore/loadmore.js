@@ -1,10 +1,17 @@
-// pages/app/mine/music/music.js
+// components/loadmore.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    text: {
+      type: String,
+      value: ''
+    },
+    isEnd: {
+      type: Boolean,
+      value: false
+    }
   },
 
   /**

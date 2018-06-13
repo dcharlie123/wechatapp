@@ -1,0 +1,14 @@
+.list{
+  height: 130rpx;
+  line-height: 130rpx;
+  background: #fff;
+  padding: 0 45rpx;
+  font-size: 30rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+.list-left text{
+  margin-left: 28rpx;
+}
+.list-active{
+  background: #f9f9f9;
+}

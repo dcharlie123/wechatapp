@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/app/myapp"
+    "pages/app/myapp",
+    "pages/app/home/video-detail/video-detail",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

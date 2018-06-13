@@ -18,14 +18,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    switchTab(e) {
-      console.log(e)
-      let tab = e.currentTarget.id
-      if (tab === 'tableft') {
-        this.setData({ currentTab: 0 })
-      } else if (tab === 'tabright') {
-        this.setData({ currentTab: 1 })
-      }
-    }
+    // switchTab(e) {
+    //   console.log(e)
+    //   let tab = e.currentTarget.id
+    //   if (tab === 'tableft') {
+    //     this.setData({ currentTab: 0 })
+    //   } else if (tab === 'tabright') {
+    //     this.setData({ currentTab: 1 })
+    //   }
+    // }
   }
 })

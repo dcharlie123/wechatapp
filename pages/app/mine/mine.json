@@ -1,7 +1,12 @@
 {
+  "navigationBarTitleText": "个人中心",
+  "backgroundColor": "#F3F3F3",
   "component": true,
   "usingComponents": {
-    "movie": "movie/movie",
-    "music": "music/music"
+    "v-list": "/components/list/list"
   }
 }
+
+
+
+

@@ -1,4 +1,8 @@
 {
   "component": true,
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "loadmore": "../../../components/loadmore/loadmore"
+  }
 }

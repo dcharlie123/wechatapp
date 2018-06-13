@@ -1,4 +1,4 @@
-
+@import '../../../components/list/list.wxss';
 .container{
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@
   background: #fafafa
 }
 
-.tab-wrapper{
+/* .tab-wrapper{
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -33,4 +33,23 @@
 .content-wrapper{
   width: 100%;
   flex: 1;
+} */
+.head {
+  width: 100%;
+  height: 279rpx;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.avatar-img {
+  width: 130rpx;
+  height: 130rpx;
+  background: rebeccapurple;
+  border-radius: 100%;
+}
+.lists{
+  margin-top: 20rpx;
 }

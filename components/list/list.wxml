@@ -1,0 +1,7 @@
+<view class='list' hover-class="list-active">
+  <view class='list-left'>
+    <text class='icon'>1</text>
+    <text class='text'>{{text}}</text>
+  </view>
+  <view class='list-right'></view>
+</view>

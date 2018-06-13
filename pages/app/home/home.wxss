@@ -34,20 +34,26 @@
   width: 100%;
   flex: 1;
 }
-.searchBar{
+.index_searchBar{
   width: 690rpx;
   height: 60rpx;
-  line-height: 60rpx;
+  /* line-height: 60rpx; */
   background: #FAF9F9;
   margin: 39rpx auto 34rpx;
   border-radius: 100rpx;
+  vertical-align: middle;
+  text-align: center;
 }
-.search{
-  height: 100%;
-  line-height: 1;
-  padding:0 10px;
-  font-size: 14px;
-  color: #999;
+.index_searchBtn{
+  background: red;
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align:middle;
+}
+.index_searchText{
+  vertical-align: middle;
+  font-size: 24rpx;
+  margin-left: 19rpx;
 }
 .navBar{
   display: flex;

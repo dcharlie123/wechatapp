@@ -1,0 +1,31 @@
+@import '/components/recommondlist.wxss';
+.search-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+  height: 60rpx;
+}
+.search-box{
+  width: 620rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #f8F8F8;
+  border-radius: 60rpx;
+}
+.search-box .search-icon{
+ width:40rpx;
+ height: 40rpx;
+ display: inline-block;
+ vertical-align:text-top;
+}
+.search-box .search{
+  margin-left: 20rpx;
+  display: inline-block;
+  vertical-align: text-top;
+  font-size: 26rpx;
+}
+.cancel{
+  font-size: 28rpx;
+  color: #444;
+}

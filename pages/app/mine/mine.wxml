@@ -1,11 +1,21 @@
 <view class='container'>
-
-  <view class='tab-wrapper'>
+  <!-- <view class='tab-wrapper'>
     <view id='tableft' class='tab-left {{currentTab === 0 ? "tab-active":""}}' bindtap='switchTab'>电影</view>
     <view id='tabright' class='tab-right {{currentTab === 1 ? "tab-active" : ""}}' bindtap='switchTab'>音乐</view>
   </view>
 
   <view class='content-wrapper' wx:if='{{currentTab === 0}}'><movie/></view>
-  <view class='content-wrapper' wx:if='{{currentTab === 1}}'><music/></view>
+  <view class='content-wrapper' wx:if='{{currentTab === 1}}'><music/></view> -->
+  <view class='head'>
+    <view class='info'>
+      <image src='' class='avatar-img'></image>
+      <view>aaaa</view>
+    </view>
 
+  </view>
+  <view class='lists'>
+    <v-list icon="{{1}}" text="观看历史"></v-list>
+    <v-list icon="{{1}}" text="我的喜欢"></v-list>
+    <v-list icon="{{1}}" text="关于我们"></v-list>
+  </view>
 </view>

@@ -1,0 +1,4 @@
+<!--components/loadmore.wxml-->
+<view class="loadmore">
+  <text>{{ text || '加载中...' }}</text>
+</view>

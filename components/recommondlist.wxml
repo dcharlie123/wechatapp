@@ -21,9 +21,9 @@
         <view class='bottom-right'>
           <view class='like'>
             <text class='like_num'>111</text>
-            <image class='like_btn' src="../../../assets/favorite.png" mode='scaleToFill'></image>
+            <image data-list="{{item}}" class='like_btn' src='{{video&&video.article_id==item.article_id&&video.liked ? "../../../assets/favorited.png" : "../../../assets/favorite.png"}}' mode='scaleToFill' catchtap='like'></image>
           </view>
-          <view class='share'>share</view>
+          <button open-type='share' class='share' bindtap='share' data-item='{{item}}'>share</button>
         </view>
       </view>
     </view>
