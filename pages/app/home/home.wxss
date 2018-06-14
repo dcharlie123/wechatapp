@@ -37,7 +37,7 @@
 .index_searchBar{
   width: 690rpx;
   height: 60rpx;
-  /* line-height: 60rpx; */
+   line-height: 60rpx; 
   background: #FAF9F9;
   margin: 39rpx auto 34rpx;
   border-radius: 100rpx;

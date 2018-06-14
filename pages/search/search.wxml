@@ -4,12 +4,16 @@
   <view class='search-wrapper'>
     <view class='search-box'>
       <image class='search-icon'></image>
-      <input type='text' confirm-type="search" placeholder='搜索' placeholder-style='font-size:26rpx' class='search'></input>
+      <input type='text' confirm-type="search" placeholder='搜索' placeholder-style='font-size:26rpx' class='search' bindconfirm="search"></input>
     </view>
     <text class='cancel' catchtap='cancel'>取消</text>
   </view>
   <view wx:if="{{searchData}}">
     <template is="recommondlist"></template>
   </view>
-  <view wx:elif="{{!search_data&&searchRecord}}"></view>
+  <view wx:elif="{{!searchData&&searchRecord}}" class='searchRecord'>
+    <view class='searchRecord_title'>搜索历史</view>
+    <view class='searchRecord_item' wx:for='{{searchRecord}}'>{{item}}</view>
+    <view class='searchRecord_clear' catchtap='clearRearchRecord'>清除历史记录</view>
+  </view>
 </view>

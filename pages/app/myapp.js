@@ -55,6 +55,10 @@ Page({
       wx.setNavigationBarTitle({
         title: '个人中心',
       })
+    } else if (e.currentTarget.dataset.current == 0){
+      wx.setNavigationBarTitle({
+        title: 'N视频',
+      })
     }
   },
   onReachBottom(){

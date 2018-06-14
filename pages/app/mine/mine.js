@@ -27,5 +27,18 @@ Component({
     //     this.setData({ currentTab: 1 })
     //   }
     // }
+    goMini1(){
+      wx.navigateToMiniProgram({})
+    },
+    goMini2(){
+      wx.navigateBackMiniProgram({
+        
+      })
+    },
+    Mylike(){
+      wx.navigateTo({
+        url: '/pages/listPage/listPage?type=like',
+      })
+    }
   }
 })

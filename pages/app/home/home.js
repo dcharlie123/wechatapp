@@ -54,7 +54,7 @@ Component({
       }).then(res => {
         if (res.data.status === 0) {
           this.processData(type, res.data.data.articles)
-        }else{
+        } else {
           wx.showToast({
             title: `网络错误!`,
             duration: 1000,
@@ -129,7 +129,7 @@ Component({
             // 返回网络类型, 有效值：
             // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
             var networkType = res.networkType;//网络状态
-            console.log(networkType)
+            // console.log(networkType)
             if (networkType !== "wifi") {//如果不是wifi提醒用户
               wx.showModal({
                 title: '提示',
@@ -148,7 +148,7 @@ Component({
             }
           }
         })
-      }else{
+      } else {
         this.playVideo(e);//用户已忽略网络类型,给播放
       }
 
@@ -181,7 +181,7 @@ Component({
     },
     like(event) {
       var e = event.currentTarget.dataset.list;
-      console.log(e);
+      // console.log(e);
       this.setData({
         video: e
       })
@@ -197,10 +197,16 @@ Component({
     openDetail(event) {
       let item = event.currentTarget.dataset.list
       // let url = `video-detail/video-detail?title=${item.title}&time=${encodeURIComponent(item.create_time)}&url=${item.videos[0].video_src}`
-      let url = 'home/video-detail/video-detail'
+      let url = `home/video-detail/video-detail?title=${item.title}&id=${item.article_id}`
       wx.navigateTo({
         url: url
       })
     },
+    goList(event) {
+      var listType = event.currentTarget.dataset.type;
+      wx.navigateTo({
+        url: '/pages/listPage/listPage?type=' + listType,
+      })
+    }
   }
 })

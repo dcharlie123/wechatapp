@@ -1,0 +1,3 @@
+<!--pages/listPage/listPage.wxml-->
+<import src="/components/recommondlist.wxml"></import>
+<template is="recommondlist"></template>

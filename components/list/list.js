@@ -8,6 +8,9 @@ Component({
     },
     text: {
       type: String
+    },
+    listType:{
+      type:Number
     }
   },
   /**

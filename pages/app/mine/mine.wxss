@@ -53,3 +53,6 @@
 .lists{
   margin-top: 20rpx;
 }
+.otherMiniApp{
+  margin-top: 20rpx;
+}

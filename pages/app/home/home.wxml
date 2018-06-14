@@ -5,11 +5,11 @@
     <text class='index_searchText'>搜索</text>
   </view>
   <view class='navBar'>
-    <view>最热</view>
-    <view>人物</view>
-    <view>实验</view>
-    <view>治愈系</view>
-    <view>事件</view>
+    <view catchtap='goList' data-type='hot'>最热</view>
+    <view catchtap='goList' data-type='people'>人物</view>
+    <view catchtap='goList' data-type='experiment'>实验</view>
+    <view catchtap='goList' data-type='cure'>治愈系</view>
+    <view catchtap='goList' data-type='event'>事件</view>
   </view>
   <template is="recommondlist" data="{{item,video}}" wx:for="{{movieList}}" wx:key="{{index}}"></template>
   <loadmore wx:if="{{isLoading}}" />

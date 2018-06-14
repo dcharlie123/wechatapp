@@ -1,7 +1,15 @@
-<view class='list' hover-class="list-active">
-  <view class='list-left'>
-    <text class='icon'>1</text>
-    <text class='text'>{{text}}</text>
-  </view>
-  <view class='list-right'></view>
-</view>
+
+  <navigator target="miniProgram" open-type="navigate" app-id="111" path="" extra-data="" version="release" class='list' hover-class="list-active" wx:if="{{listType==1}}">
+    <view class='list-left'>
+      <text class='icon'>2</text>
+      <text class='text'>{{text}}</text>
+    </view>
+    <view class='list-right'></view>
+  </navigator>
+   <view class='list' hover-class="list-active" wx:else>
+    <view class='list-left'>
+      <text class='icon'>1</text>
+      <text class='text'>{{text}}</text>
+    </view>
+    <view class='list-right'></view>
+  </view> 

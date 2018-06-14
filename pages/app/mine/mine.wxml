@@ -14,8 +14,12 @@
 
   </view>
   <view class='lists'>
-    <v-list icon="{{1}}" text="观看历史"></v-list>
-    <v-list icon="{{1}}" text="我的喜欢"></v-list>
+    <!-- <v-list icon="{{1}}" text="观看历史"></v-list> -->
+    <v-list icon="{{1}}" text="我的喜欢" bindtap="Mylike"></v-list>
     <v-list icon="{{1}}" text="关于我们"></v-list>
+  </view>
+  <view class='otherMiniApp'>
+    <v-list icon="{{1}}" text="南方都市报" listType="{{1}}"></v-list>
+    <v-list icon="{{1}}" text="南都数字报" listType="{{1}}"></v-list>
   </view>
 </view>
