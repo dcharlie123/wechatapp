@@ -71,15 +71,15 @@ Page({
   },
   onShareAppMessage(ops){
     if(ops.from==='button'){
-
     }
     var data=ops.target.dataset.item;
+    // console.log(data);
     if(!data){
       return
     }
     return {
       title:data.title,
-      // page:"/"
+      page: `/pages/video-detail/video-detail?title=${data.title}&id=${data.docid}&url=${data.video}`
     }
   }
 })

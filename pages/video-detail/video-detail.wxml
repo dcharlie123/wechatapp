@@ -1,24 +1,26 @@
 <!--pages/app/home/video-detail/video-detail.wxml-->
 
 <view class='Video-box'>
-  <video id="myVideo" class='Video' src="{{video.url}}" controls autoplay></video>
+  <video id="myVideo" class='Video' src="{{videoUrl}}" controls autoplay></video>
   <view class='video-detail'>
-    <text class='title'>首批00后高考啦！学长们花式加油，满满的回忆杀</text>
+    <text class='title'>{{video.title}}</text>
     <view class='item-bottom'>
       <view class='bottom-left'>
-        <text class='video-pub'>N视频</text>
-        <text class='time'>item.create_time</text>
+        <text class='video-pub'>{{video.author}}</text>
+        <text class='time'>{{video.ptime}}</text>
       </view>
       <view class='bottom-right'>
         <view class='like'>
-          <text class='like_num'>111</text>
-          <image data-list="{{item}}" class='like_btn' src='{{video&&video.article_id==item.article_id&&video.liked ? "../../../../assets/favorited.png" : "../../../../assets/favorite.png"}}' mode='scaleToFill' catchtap='like'></image>
+          <text class='like_num'>{{video.favorcount}}</text>
+          <image data-list="{{item}}" class='like_btn' src='{{video&&video.article_id==item.article_id&&video.liked ? "/assets/favorited.png" : "/assets/favorite.png"}}' mode='scaleToFill' catchtap='like'></image>
         </view>
-        <button open-type='share' class='share' bindtap='share' data-item='{{item}}'>share</button>
+         <button open-type='share' class='share' bindtap='share' data-item='{{item}}'>
+            <image src="/assets/icon40_share.png" class='shareImg'></image>
+          </button>
       </view>
     </view>
     <view class='video_des'>
-      明天首批00后就要参加高考了，你还记得自己当年的高考吗？可以给学弟学妹们提供什么建议？高考生们，学长们的花式加（tu）油(cao)来啦！青春最好的样子，就是你意气风发的模样，加油吧，少年！南都记者贺蓓 视频:陆卓尧 刘威 林晓红 编辑张亚莉
+      {{video.summary}}
     </view>
   </view>
 </view>

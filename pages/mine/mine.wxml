@@ -15,7 +15,7 @@
   </view>
   <view class='lists'>
     <!-- <v-list icon="{{1}}" text="观看历史"></v-list> -->
-    <v-list icon="{{1}}" text="我的喜欢" bindtap="Mylike"></v-list>
+    <v-list icon="{{'/assets/N视频图标/icon40_like.png'}}" leftIcon="{{'/assets/N视频图标/icon30_arrow.png'}}" text="我的喜欢" bindtap="Mylike"></v-list>
     <v-list icon="{{1}}" text="关于我们"></v-list>
   </view>
   <view class='otherMiniApp'>

@@ -11,6 +11,9 @@ Component({
     },
     listType:{
       type:Number
+    },
+    leftIcon:{
+      type:String
     }
   },
   /**

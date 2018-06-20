@@ -73,7 +73,7 @@ Component({
     },
     processData(type, list) {
       if (list.length) {
-        
+
         if (list[0].flag == "circularcard") {
           this.setData({
             navData: list.shift()
@@ -81,7 +81,7 @@ Component({
         }
         list.map(v => { // 转换一下时间
           v.ptime = util.formatTime(new Date(), 'yyyy-MM-dd');
-          v.summary=v.summary.slice(0,80)+"..."
+          v.summary = v.summary.slice(0, 80) + "..."
         })
         if (type === 'up') { // 上拉处理
           this.setData({
@@ -127,6 +127,7 @@ Component({
     bindPlayVideo(event) {
       var _this_ = this;
       var e = event.currentTarget.dataset.item;
+      // console.log(e);
       if (!_this_.data.userING) {
         wx.getNetworkType({
           success: function (res) {
@@ -144,7 +145,7 @@ Component({
                     _this_.playVideo(e) //播放视频
                   }
                 },
-                fail() {}
+                fail() { }
               })
             } else {
               _this_.playVideo(e) //wifi情况下自动播放
@@ -164,6 +165,7 @@ Component({
       this.setData({
         [str]: true
       });
+      console.log(this.data.video.video)
     },
     bindVideoEnded() {
       var str = 'video.showPlayer';
@@ -185,13 +187,32 @@ Component({
     like(event) {
       var e = event.currentTarget.dataset.list;
       // console.log(e);
-      this.setData({
-        video: e
+      util.$get(`${host}m=NDvideo&a=postFavor`, { docid: e.docid }).then(res => {
+        if (res.data.errcode == 0) {
+          this.setData({
+            video: e
+          })
+          var sl = "video.liked";
+          this.setData({
+            [sl]: true
+          })
+        } else if(res.data.errcode==10010) {
+          //登录
+          wx.showToast({
+            title: res.data.errmsg
+          })
+        }else{
+          // var msg=res.errmsg;
+          // console.log(msg)
+          wx.showToast({
+            
+            title: res.data.errmsg,
+            icon: 'loading'
+          })
+        }
       })
-      var sl = "video.liked";
-      this.setData({
-        [sl]: true
-      })
+
+
     },
     share(event) {
       //触发onShareAppMessage
@@ -199,8 +220,8 @@ Component({
     },
     openDetail(event) {
       let item = event.currentTarget.dataset.list
-      // let url = `video-detail/video-detail?title=${item.title}&time=${encodeURIComponent(item.create_time)}&url=${item.videos[0].video_src}`
-      let url = `/pages/video-detail/video-detail?title=${item.title}&id=${item.article_id}`
+      // let url = `video-detail/video-detail?title=${item.title}&time=${encodeURIComponent(item.docid)}&url=${item.videos[0]}`
+      let url = `/pages/video-detail/video-detail?title=${item.title}&id=${item.docid}&url=${item.video}`;
       wx.navigateTo({
         url: url
       })

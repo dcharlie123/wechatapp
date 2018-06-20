@@ -58,6 +58,19 @@
 }
 
 .share {
-  margin-left: 60rpx;
-  font-size: 22rpx;
+
+  padding: 0;
+  margin: 16rpx 0 0 46rpx;
+  line-height: normal;
+  background: transparent;
+  overflow: auto;
+  font-size: 0;
+  display: inline;
+}
+.share:after {
+    content: none;
+}
+.shareImg{
+  width: 42rpx;
+  height: 42rpx;
 }

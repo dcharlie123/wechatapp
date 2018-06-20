@@ -1,13 +1,13 @@
 <template name="recommondlist">
   <view>
     <view class='videoW'>
-      <video bindended="bindVideoEnded" controls autoplay="true" objectFit='fill' class='myVideo' id="myVideo" poster="{{item.thumbnails[0].url}}" src="{{video.videos[0].video_src}}" wx:if="{{video&&video.article_id==item.article_id&&video.showPlayer}}"></video>
+      <video bindended="bindVideoEnded" controls autoplay="true" objectFit='fill' class='myVideo' id="myVideo" poster="{{item.imglist[0]}}" src="{{video.video}}" wx:if="{{video&&video.docid==item.docid&&video.showPlayer}}"></video>
       <view bindtap="bindPlayVideo" class="list-cover" data-item="{{item}}" wx:else>
-        <image backgroundSize="cover" mode="scaleToFill" class="cover" src="{{item.thumbnails[0].url}}" wx:if="{{item.thumbnails[0].url}}"></image>
+        <image backgroundSize="cover" mode="scaleToFill" class="cover" src="{{item.imglist[0]}}" wx:if="{{item.imglist[0]}}"></image>
         <view class="play-icon">
           <image class="icon" src="/assets/play.png"></image>
         </view>
-        <view class='videoTime'>01:47</view>
+        <view class='videoTime'>{{item.video_duration}}</view>
       </view>
     </view>
     <view class='video-des'>
@@ -20,10 +20,12 @@
         </view>
         <view class='bottom-right'>
           <view class='like'>
-            <text class='like_num'>111</text>
-            <image data-list="{{item}}" class='like_btn' src='{{video&&video.article_id==item.article_id&&video.liked ? "/assets/favorited.png" : "/assets/favorite.png"}}' mode='scaleToFill' catchtap='like'></image>
+            <text class='like_num'>{{item.favorcount}}</text>
+            <image data-list="{{item}}" class='like_btn' src='{{video&&video.docid==item.docid&&video.liked ? "/assets/favorited.png" : "/assets/favorite.png"}}' mode='scaleToFill' catchtap='like'></image>
           </view>
-          <button open-type='share' class='share' bindtap='share' data-item='{{item}}'>share</button>
+          <button open-type='share' class='share' bindtap='share' data-item='{{item}}'>
+            <image src="/assets/icon40_share.png" class='shareImg'></image>
+          </button>
         </view>
       </view>
     </view>

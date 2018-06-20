@@ -12,32 +12,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options);
+    console.log(options);
     var type = options.type;
     var navTitle = "N视频";
-    switch (type) {
-      case 'hot':
-        navTitle = "热门";
-        break;
-      case 'people':
-        navTitle = "人物";
-        break;
-      case 'experiment':
-        navTitle = "实验";
-        break;
-      case 'cure':
-        navTitle = "治愈系";
-        break;
-      case 'event':
-        navTitle = "事件";
-        break;
-      case 'like':
-        navTitle = "我的喜欢";
-        break;
-    };
+    var navTitle=type;
     wx.setNavigationBarTitle({
       title: navTitle,
     })
+
   },
 
   /**

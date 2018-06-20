@@ -1,3 +1,3 @@
 <!--pages/listPage/listPage.wxml-->
 <import src="/components/recommondlist.wxml"></import>
-<template is="recommondlist"></template>
+<template is="recommondlist" data="{{item,video}}" wx:for="{{videoList}}" wx:key="{{index}}"></template>

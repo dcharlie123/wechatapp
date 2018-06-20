@@ -5,11 +5,26 @@
     <text class='index_searchText'>搜索</text>
   </view>
   <view class='navBar'>
-    <view catchtap='goList' data-type='hot'>最热</view>
-    <view catchtap='goList' data-type='people'>人物</view>
-    <view catchtap='goList' data-type='experiment'>实验</view>
-    <view catchtap='goList' data-type='cure'>治愈系</view>
-    <view catchtap='goList' data-type='event'>事件</view>
+    <view catchtap='goList' data-type='{{navData.list[0].title}}' class='navItem'>
+      <image src="../../assets/N视频图标/icon40_event.png" class='navImg'></image>
+      <view>{{navData.list[0].title}}</view>
+    </view>
+    <view catchtap='goList' data-type='{{navData.list[1].title}}' class='navItem'>
+      <image src="../../assets/N视频图标/icon40_person.png" class='navImg'></image>
+      <view>{{navData.list[1].title}}</view>
+    </view>
+    <view catchtap='goList' data-type='{{navData.list[2].title}}' class='navItem'>
+      <image src="../../assets/N视频图标/icon40_experiment.png" class='navImg'></image>
+      <view>{{navData.list[2].title}}</view>
+    </view>
+    <view catchtap='goList' data-type='{{navData.list[3].title}}' class='navItem'>
+      <image src="../../assets/N视频图标/icon40_cure.png" class='navImg'></image>
+      <view>{{navData.list[3].title}}</view>
+    </view>
+    <view catchtap='goList' data-type='{{navData.list[4].title}}' class='navItem'>
+      <image src="../../assets/N视频图标/icon40_hot.png" class='navImg'></image>
+      <view>{{navData.list[4].title}}</view>
+    </view>
   </view>
   <template is="recommondlist" data="{{item,video}}" wx:for="{{videoList}}" wx:key="{{index}}"></template>
   <loadmore wx:if="{{isLoading}}" />

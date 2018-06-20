@@ -8,8 +8,8 @@
   </navigator>
    <view class='list' hover-class="list-active" wx:else>
     <view class='list-left'>
-      <text class='icon'>1</text>
+      <image  class='icon' src='{{icon}}'></image >
       <text class='text'>{{text}}</text>
     </view>
-    <view class='list-right'></view>
+    <image class='list-right' src='{{leftIcon}}'></image>
   </view> 
