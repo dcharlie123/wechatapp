@@ -1,4 +1,4 @@
-@import '../../../components/list/list.wxss';
+@import '../../components/list/list.wxss';
 .container{
   display: flex;
   flex-direction: column;

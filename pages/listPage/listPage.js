@@ -86,6 +86,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: "a"
+    }
+  },
+  openDetail(event) {
+    // let item = event.currentTarget.dataset.list
+    // let url = `/pages/video-detail/video-detail?title=${item.title}&id=${item.article_id}`;
+    let url = `/pages/video-detail/video-detail`;
+    wx.navigateTo({
+      url: url
+    })
   }
 })

@@ -1,6 +1,6 @@
 {
   "usingComponents":{
-    "home": "./home/home",
-    "mine": "./mine/mine"
+    "home": "../home/home",
+    "mine": "../mine/mine"
   }
 }

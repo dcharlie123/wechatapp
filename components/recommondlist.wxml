@@ -5,23 +5,23 @@
       <view bindtap="bindPlayVideo" class="list-cover" data-item="{{item}}" wx:else>
         <image backgroundSize="cover" mode="scaleToFill" class="cover" src="{{item.thumbnails[0].url}}" wx:if="{{item.thumbnails[0].url}}"></image>
         <view class="play-icon">
-          <image class="icon" src="../../../assets/play.png"></image>
+          <image class="icon" src="/assets/play.png"></image>
         </view>
         <view class='videoTime'>01:47</view>
       </view>
     </view>
     <view class='video-des'>
       <view class='video_title' catchtap="openDetail" data-list="{{item}}">{{item.title}}</view>
-      <view class='des' catchtap="openDetail" data-list="{{item}}">6月5日晚，网约车司机全某驾车载女乘客在中山东凤镇坠河，两人被困车内。现场十几名热心群众当即跳入河水中…</view>
+      <view class='des' catchtap="openDetail" data-list="{{item}}">{{item.summary}}</view>
       <view class='item-bottom'>
         <view class='bottom-left'>
-          <text class='video-pub'>N视频</text>
-          <text class='time'>{{item.create_time}}</text>
+          <text class='video-pub'>{{item.author}}</text>
+          <text class='time'>{{item.ptime}}</text>
         </view>
         <view class='bottom-right'>
           <view class='like'>
             <text class='like_num'>111</text>
-            <image data-list="{{item}}" class='like_btn' src='{{video&&video.article_id==item.article_id&&video.liked ? "../../../assets/favorited.png" : "../../../assets/favorite.png"}}' mode='scaleToFill' catchtap='like'></image>
+            <image data-list="{{item}}" class='like_btn' src='{{video&&video.article_id==item.article_id&&video.liked ? "/assets/favorited.png" : "/assets/favorite.png"}}' mode='scaleToFill' catchtap='like'></image>
           </view>
           <button open-type='share' class='share' bindtap='share' data-item='{{item}}'>share</button>
         </view>

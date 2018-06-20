@@ -1,5 +1,6 @@
-import util from '../../../utils/util.js'
-const movieUrl = getApp().globalData.movieBase;
+import util from '../../utils/util.js'
+
+const host = getApp().globalData.host;
 const app = getApp();
 Component({
   /**
@@ -13,19 +14,20 @@ Component({
    * 组件的初始数据
    */
   data: {
+    navData: null,
     currentTab: 0,
-    movieList: null,
+    videoList: null,
     isLoading: true,
     hasMore: true,
-    article_id: 0,
+    page: 2,
     video: null,
-    userING: false
+    userING: false,
+    hadGetNav: false,
   },
 
   created: function (options) {
 
     this.getList('down');
-
   },
   ready: function () {
     this.videoContext = wx.createVideoContext('myVideo');
@@ -35,25 +37,20 @@ Component({
    */
   methods: {
     getList(type) {
+      var _this_ = this;
       this.setData({
         isLoading: true,
         hasMore: true
       })
-      // if(this.data.isLoading){
-      //   wx.showLoading({
-      //     title: '',
-      //   })
-      // }
+      var _this_ = this;
       type === 'down' ? this.setData({
-        article_id: 0
+        page: 1
       }) : null;
-      util.$get(`${movieUrl}/api/v2/article`, {
-        app_id: 6,
-        cid: 4,
-        article_id: this.data.article_id
+      util.$get(`${host}m=NDvideo&a=nav`, {
+        page: _this_.data.page
       }).then(res => {
-        if (res.data.status === 0) {
-          this.processData(type, res.data.data.articles)
+        if (res.data.errcode == 0) {
+          this.processData(type, res.data.data)
         } else {
           wx.showToast({
             title: `网络错误!`,
@@ -76,21 +73,28 @@ Component({
     },
     processData(type, list) {
       if (list.length) {
+        
+        if (list[0].flag == "circularcard") {
+          this.setData({
+            navData: list.shift()
+          })
+        }
         list.map(v => { // 转换一下时间
-          v.create_time = util.formatTime(new Date(), 'yyyy-MM-dd')
+          v.ptime = util.formatTime(new Date(), 'yyyy-MM-dd');
+          v.summary=v.summary.slice(0,80)+"..."
         })
         if (type === 'up') { // 上拉处理
           this.setData({
-            movieList: this.data.movieList.concat(list)
+            videoList: this.data.videoList.concat(list),
           })
         } else { // 下拉出来
           this.setData({
-            movieList: list
+            videoList: list
           })
           wx.stopPullDownRefresh()
         }
         this.setData({
-          article_id: ++this.data.article_id,
+          article_id: ++this.data.page,
           isLoading: false,
           hasMore: true
         })
@@ -128,28 +132,27 @@ Component({
           success: function (res) {
             // 返回网络类型, 有效值：
             // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
-            var networkType = res.networkType;//网络状态
+            var networkType = res.networkType; //网络状态
             // console.log(networkType)
-            if (networkType !== "wifi") {//如果不是wifi提醒用户
+            if (networkType !== "wifi") { //如果不是wifi提醒用户
               wx.showModal({
                 title: '提示',
                 content: '您未连接wifi，确定要播放吗',
                 success(res) {
-                  if (res.confirm) {//如果用户确认
-                    _this_.data.userING = true;//把用户忽略设置为true
-                    _this_.playVideo(e)//播放视频
+                  if (res.confirm) { //如果用户确认
+                    _this_.data.userING = true; //把用户忽略设置为true
+                    _this_.playVideo(e) //播放视频
                   }
                 },
-                fail() {
-                }
+                fail() {}
               })
             } else {
-              _this_.playVideo(e)//wifi情况下自动播放
+              _this_.playVideo(e) //wifi情况下自动播放
             }
           }
         })
       } else {
-        this.playVideo(e);//用户已忽略网络类型,给播放
+        this.playVideo(e); //用户已忽略网络类型,给播放
       }
 
     },
@@ -197,7 +200,7 @@ Component({
     openDetail(event) {
       let item = event.currentTarget.dataset.list
       // let url = `video-detail/video-detail?title=${item.title}&time=${encodeURIComponent(item.create_time)}&url=${item.videos[0].video_src}`
-      let url = `home/video-detail/video-detail?title=${item.title}&id=${item.article_id}`
+      let url = `/pages/video-detail/video-detail?title=${item.title}&id=${item.article_id}`
       wx.navigateTo({
         url: url
       })

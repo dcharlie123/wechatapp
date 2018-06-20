@@ -12,12 +12,12 @@
   <!-- 下面的两个tab -->
   <view class='bottom-tab'>
     <view class='tab-item {{currentTab == 0 ? "active" : ""}}' data-current="0" bindtap='switchTab'>
-      <image src='{{currentTab == 0 ? "../../assets/home_active.png" : "../../assets/home.png"}}' class='item-img'></image>
+      <image src='{{currentTab == 0 ? "../../assets/icon40_recommend_on.png" : "../../assets/icon40_recommend.png"}}' class='item-img'></image>
       <text class='item-text {{currentTab == 0 ? "active" : ""}}'>推荐</text>
     </view>
     <view class='middleList'></view>
     <view class='tab-item {{currentTab == 1 ? "active" : ""}}' data-current="1" bindtap='switchTab'>
-      <image src='{{currentTab == 1 ? "../../assets/mine_active.png" : "../../assets/mine.png"}}' class='item-img'></image>
+      <image src='{{currentTab == 1 ? "../../assets/icon40_user_on.png" : "../../assets/icon40_user.png"}}' class='item-img'></image>
       <text class='item-text {{currentTab == 1 ? "active" : ""}}'>我的</text>
 
     </view>

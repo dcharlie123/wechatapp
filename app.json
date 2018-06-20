@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/app/myapp",
-    "pages/app/home/video-detail/video-detail",
+    "pages/video-detail/video-detail",
     "pages/search/search",
     "pages/listPage/listPage"
   ],

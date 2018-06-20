@@ -1,4 +1,4 @@
-@import "../../../components/recommondlist.wxss";
+@import "../../components/recommondlist.wxss";
 .container{
   display: flex;
   flex-direction: column;
@@ -45,7 +45,7 @@
   text-align: center;
 }
 .index_searchBtn{
-  background: red;
+  /* background: red; */
   width: 40rpx;
   height: 40rpx;
   vertical-align:middle;

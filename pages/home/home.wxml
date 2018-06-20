@@ -1,7 +1,7 @@
-<import src="../../../components/recommondlist.wxml"></import>
+<import src="../../components/recommondlist.wxml"></import>
 <view class='container'>
   <view class='index_searchBar' bindtap='goSearch'>
-    <image class='index_searchBtn'></image>
+    <image class='index_searchBtn' src="../../assets/icon30_search.png"></image>
     <text class='index_searchText'>搜索</text>
   </view>
   <view class='navBar'>
@@ -11,6 +11,6 @@
     <view catchtap='goList' data-type='cure'>治愈系</view>
     <view catchtap='goList' data-type='event'>事件</view>
   </view>
-  <template is="recommondlist" data="{{item,video}}" wx:for="{{movieList}}" wx:key="{{index}}"></template>
+  <template is="recommondlist" data="{{item,video}}" wx:for="{{videoList}}" wx:key="{{index}}"></template>
   <loadmore wx:if="{{isLoading}}" />
 </view>
