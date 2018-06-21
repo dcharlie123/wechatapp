@@ -60,7 +60,7 @@
   justify-content: space-around;
   margin-bottom: 40rpx;
   height: 75rpx;
-  font-size: 14px;
+  font-size: 28rpx;
 }
 .navItem{
   display: flex;
@@ -70,6 +70,6 @@
 
 }
 .navImg{
-  width: 40rpx;
-  height:60px;
+  width: 36rpx;
+  height:54rpx;
 }

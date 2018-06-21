@@ -5,24 +5,24 @@
     <text class='index_searchText'>搜索</text>
   </view>
   <view class='navBar'>
-    <view catchtap='goList' data-type='{{navData.list[0].title}}' class='navItem'>
-      <image src="../../assets/N视频图标/icon40_event.png" class='navImg'></image>
+    <view catchtap='goList' data-type='{{navData.list[0].title}}' data-u='{{navData.list[0].url}}' class='navItem'>
+      <image src="/assets/N视频图标/icon40_event.png" class='navImg'></image>
       <view>{{navData.list[0].title}}</view>
     </view>
-    <view catchtap='goList' data-type='{{navData.list[1].title}}' class='navItem'>
-      <image src="../../assets/N视频图标/icon40_person.png" class='navImg'></image>
+    <view catchtap='goList' data-type='{{navData.list[1].title}}' data-u='{{navData.list[1].url}}' class='navItem'>
+      <image src="/assets/N视频图标/icon40_person.png" class='navImg'></image>
       <view>{{navData.list[1].title}}</view>
     </view>
-    <view catchtap='goList' data-type='{{navData.list[2].title}}' class='navItem'>
-      <image src="../../assets/N视频图标/icon40_experiment.png" class='navImg'></image>
+    <view catchtap='goList' data-type='{{navData.list[2].title}}' data-u='{{navData.list[2].url}}' class='navItem'>
+      <image src="/assets/N视频图标/icon40_experiment.png" class='navImg'></image>
       <view>{{navData.list[2].title}}</view>
     </view>
-    <view catchtap='goList' data-type='{{navData.list[3].title}}' class='navItem'>
-      <image src="../../assets/N视频图标/icon40_cure.png" class='navImg'></image>
+    <view catchtap='goList' data-type='{{navData.list[3].title}}' data-u='{{navData.list[3].url}}' class='navItem'>
+      <image src="/assets/N视频图标/icon40_cure.png" class='navImg'></image>
       <view>{{navData.list[3].title}}</view>
     </view>
-    <view catchtap='goList' data-type='{{navData.list[4].title}}' class='navItem'>
-      <image src="../../assets/N视频图标/icon40_hot.png" class='navImg'></image>
+    <view catchtap='goList' data-type='{{navData.list[4].title}}' data-u='{{navData.list[4].url}}' class='navItem'>
+      <image src="/assets/N视频图标/icon40_hot.png" class='navImg'></image>
       <view>{{navData.list[4].title}}</view>
     </view>
   </view>

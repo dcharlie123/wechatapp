@@ -17,7 +17,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+    // console.log(options)
     wx.setNavigationBarTitle({
       title: options.title
     })
@@ -81,7 +84,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage(ops){
+    if(ops.from==='button'){
+    }
+    var data=ops.target.dataset.item;
+    // console.log(data);
+    if(!data){
+      return
+    }
+    return {
+      title:data.title,
+      page: `/pages/video-detail/video-detail?title=${data.title}&id=${data.docid}&url=${data.video}`
+    }
   }
 })

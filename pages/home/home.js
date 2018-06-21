@@ -228,8 +228,11 @@ Component({
     },
     goList(event) {
       var listType = event.currentTarget.dataset.type;
+      var u = event.currentTarget.dataset.u;
+      // console.log(u);
+      var tp=encodeURIComponent(u.split("?")[1]);
       wx.navigateTo({
-        url: '/pages/listPage/listPage?type=' + listType,
+        url: `/pages/listPage/listPage?type=${listType}&tp=${tp}`
       })
     }
   }

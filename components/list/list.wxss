@@ -13,10 +13,14 @@
   margin-left: 28rpx;
   vertical-align: middle;
 }
-.list-left .icon{
+.list-left .icon,.aicon{
   width:40rpx;
   height: 40rpx;
   vertical-align: middle;
+  background: red;
+}
+.aicon{
+  border-radius: 50%;
 }
 .list-active{
   background: #f9f9f9;

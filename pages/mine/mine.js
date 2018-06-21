@@ -11,7 +11,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    currentTab: 0
+    currentTab: 0,
+    likeicon:"/assets/N视频图标/icon40_like.png"
   },
 
   /**

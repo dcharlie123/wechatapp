@@ -1,15 +1,15 @@
 
   <navigator target="miniProgram" open-type="navigate" app-id="111" path="" extra-data="" version="release" class='list' hover-class="list-active" wx:if="{{listType==1}}">
     <view class='list-left'>
-      <text class='icon'>2</text>
+      <image  class='aicon' src='../../assets/N视频图标/icon40_{{icon}}.png'></image >
       <text class='text'>{{text}}</text>
     </view>
     <view class='list-right'></view>
   </navigator>
    <view class='list' hover-class="list-active" wx:else>
     <view class='list-left'>
-      <image  class='icon' src='{{icon}}'></image >
+      <image  class='icon' src='../../assets/N视频图标/icon40_{{icon}}.png'></image >
       <text class='text'>{{text}}</text>
     </view>
-    <image class='list-right' src='{{leftIcon}}'></image>
+    <image class='list-right' src='../../assets/N视频图标/icon30_arrow.png'></image>
   </view> 

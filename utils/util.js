@@ -32,14 +32,22 @@ const $get = (url, data, options) => {
       fail: reject
     })
   })
-}
+};
 
 function playVideo(e) {
   e.videoContext.play()
+};
+
+function getQueryString(url, name) {
+  var vars = url.split("?")[1];
+  // console.log(vars);s
+  var match = RegExp('[?&]' + name + '=([^&]*)').exec(vars);
+  return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
 module.exports = {
   formatTime: formatTime,
   playVideo,
   $get,
-  json2Form
+  json2Form,
+  getQueryString
 }
