@@ -1,4 +1,5 @@
 @import "../../components/recommondlist.wxss";
+@import '../../components/modal/modal.wxss';
 .container{
   display: flex;
   flex-direction: column;
@@ -37,9 +38,10 @@
 .index_searchBar{
   width: 690rpx;
   height: 60rpx;
-   line-height: 60rpx; 
+  line-height: 56rpx; 
   background: #FAF9F9;
-  margin: 39rpx auto 34rpx;
+   margin: 39rpx auto 34rpx; 
+  /* margin: 50rpx auto 34rpx; */
   border-radius: 100rpx;
   vertical-align: middle;
   text-align: center;
@@ -57,19 +59,23 @@
 }
 .navBar{
   display: flex;
+  
   justify-content: space-around;
   margin-bottom: 40rpx;
-  height: 75rpx;
+  height: 100rpx; 
   font-size: 28rpx;
+  margin-top: 40rpx;
 }
 .navItem{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  width: 20%;
+  /* width: 40px; */
+  /* height: 75rpx; */
 }
 .navImg{
-  width: 36rpx;
-  height:54rpx;
+  width: 50rpx;
+  height:50rpx;
 }

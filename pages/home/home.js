@@ -19,7 +19,7 @@ Component({
     videoList: null,
     isLoading: true,
     hasMore: true,
-    page: 2,
+    page: 1,
     video: null,
     userING: false,
     hadGetNav: false,
@@ -27,10 +27,13 @@ Component({
 
   created: function (options) {
 
+  },
+  attached: function () {
     this.getList('down');
   },
   ready: function () {
     this.videoContext = wx.createVideoContext('myVideo');
+
   },
   /**
    * 组件的方法列表
@@ -43,6 +46,7 @@ Component({
         hasMore: true
       })
       var _this_ = this;
+      //如果是下拉,设置页数为1
       type === 'down' ? this.setData({
         page: 1
       }) : null;
@@ -72,8 +76,8 @@ Component({
       })
     },
     processData(type, list) {
-      if (list.length) {
-
+      if (list.length) {//如果有数据
+        //如果数据为Nav数据直接取出
         if (list[0].flag == "circularcard") {
           this.setData({
             navData: list.shift()
@@ -83,24 +87,22 @@ Component({
           v.ptime = util.formatTime(new Date(), 'yyyy-MM-dd');
           v.summary = v.summary.slice(0, 80) + "..."
         })
+
         if (type === 'up') { // 上拉处理
           this.setData({
             videoList: this.data.videoList.concat(list),
           })
         } else { // 下拉出来
-          this.setData({
-            videoList: list
-          })
-          wx.stopPullDownRefresh()
+            this.setData({
+              videoList: list
+            })
+            wx.stopPullDownRefresh()
         }
         this.setData({
-          article_id: ++this.data.page,
+          page: ++this.data.page,
           isLoading: false,
           hasMore: true
         })
-        // if(!this.data.isLoding){
-        //   wx.hideLoading()
-        // }
       } else {
         if (type === 'down') {
           wx.showToast({
@@ -179,61 +181,124 @@ Component({
       }
       this.getList('up')
     },
+    //点击进入搜索页面
     goSearch() {
       wx.navigateTo({
         url: '/pages/search/search',
       })
     },
+    //收藏
     like(event) {
       var e = event.currentTarget.dataset.list;
       // console.log(e);
-      util.$get(`${host}m=NDvideo&a=postFavor`, { docid: e.docid }).then(res => {
-        if (res.data.errcode == 0) {
-          this.setData({
-            video: e
+      app.globalData.likeList.push(e.docid);
+      var _this_ = this;
+      if (!wx.getStorageSync('nd_usertoken')) {//如果没登录
+        //弹出授权
+        this.setData({
+          is_modal_Show: true,
+          is_modal_title: '提示',
+          is_modal_desc: '需要您授权才能使用',
+          modalSuretxt: '授权',
+          isGetUserInfo: true,
+          option: {
+            success: 1
+          }
+        })
+      } else {
+        if (!e.favored) {//收藏
+          _this_.likeW(e.docid)
+          _this_.data.videoList.forEach((item, index, arr) => {
+            if (item.docid == e.docid) {
+              item.favored = 1;
+              item.favorcount = item.favorcount - 0 + 1;//-0是为了转化为数字类型
+              _this_.setData({
+                videoList: arr
+              })
+            }
           })
-          var sl = "video.liked";
-          this.setData({
-            [sl]: true
-          })
-        } else if(res.data.errcode==10010) {
-          //登录
-          wx.showToast({
-            title: res.data.errmsg
-          })
-        }else{
-          // var msg=res.errmsg;
-          // console.log(msg)
-          wx.showToast({
-            
-            title: res.data.errmsg,
-            icon: 'loading'
+        } else {//取消收藏
+          _this_.dislikeW(e.docid)
+          _this_.data.videoList.forEach((item, index, arr) => {
+            if (item.docid == e.docid) {
+              item.favored = 0;
+              item.favorcount -= 1;
+              _this_.setData({
+                videoList: arr
+              })
+            }
           })
         }
+      }
+    },
+    getInfo() {//授权后设置数据
+      this.setData({
+        userInfo: wx.getStorageSync("userInfo"),
+        token: wx.getStorageSync('nd_usertoken')
       })
-
-
+      app.globalData.token = wx.getStorageSync('nd_usertoken');
+      app.globalData.userInfo = wx.getStorageSync("userInfo");
     },
     share(event) {
       //触发onShareAppMessage
       this.triggerEvent('onShareAppMessage', event.currentTarget.dataset.item)
     },
+    //进入详情页面
     openDetail(event) {
       let item = event.currentTarget.dataset.list
-      // let url = `video-detail/video-detail?title=${item.title}&time=${encodeURIComponent(item.docid)}&url=${item.videos[0]}`
-      let url = `/pages/video-detail/video-detail?title=${item.title}&id=${item.docid}&url=${item.video}`;
+      let url = `/pages/videoDetail/videoDetail?title=${item.title}&id=${item.docid}&url=${item.video}`;
       wx.navigateTo({
         url: url
       })
     },
+    //进入列表页
     goList(event) {
       var listType = event.currentTarget.dataset.type;
       var u = event.currentTarget.dataset.u;
-      // console.log(u);
-      var tp=encodeURIComponent(u.split("?")[1]);
+      var tp = encodeURIComponent(u.split("?")[1]);
       wx.navigateTo({
         url: `/pages/listPage/listPage?type=${listType}&tp=${tp}`
       })
-    }
+    },
+    //收藏接口
+    likeW(docid) {
+      return new Promise((resolve, reject) => {
+        var _this_ = this;
+        wx.request({
+          method: "POST",
+          url: "https://api.ndapp.oeeee.com/friends.php?m=NDvideo&a=postFavor",
+          data: {
+            docid: docid
+          },
+          header: {
+            "content-type": "application/x-www-form-urlencoded",
+            'ndusertoken': wx.getStorageSync('nd_usertoken')
+          },
+          success: resolve,
+          fail: reject
+        })
+      })
+
+    },
+    //取消收藏接口
+    dislikeW(docid) {
+      return new Promise((resolve, reject) => {
+        var _this_ = this;
+        wx.request({
+          method: "POST",
+          url: "https://api.ndapp.oeeee.com/friends.php?m=NDvideo&a=cancleFavor",
+          data: {
+            docid: docid
+          },
+          header: {
+            "content-type": "application/x-www-form-urlencoded",
+            'ndusertoken': wx.getStorageSync('nd_usertoken')
+          },
+          success: resolve,
+          fail: reject
+        })
+      })
+
+    },
   }
 })

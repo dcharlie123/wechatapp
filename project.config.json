@@ -45,6 +45,12 @@
 					"name": "video-detail",
 					"pathName": "pages/app/home/video-detail/video-detail",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "1",
+					"pathName": "pages/likePage/likePage",
+					"query": ""
 				}
 			]
 		}

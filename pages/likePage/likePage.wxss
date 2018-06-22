@@ -1,0 +1,23 @@
+/* pages/likePage/likePage.wxss */
+.list{
+  padding: 20rpx 20rpx;
+  /* height: 100rpx; */
+  border-bottom: 1rpx solid #f1f1f1;
+  margin-bottom: 20rpx;
+}
+.title{
+  font-size: 30rpx;
+   color:#444; 
+}
+.bottom{
+  font-size: 24rpx;
+  display: flex;
+  color:#999;
+  justify-content: space-between;
+}
+.noData{
+    margin-top:20rpx;
+    text-align:center;
+    font-size:14px;
+    color:#999;
+}

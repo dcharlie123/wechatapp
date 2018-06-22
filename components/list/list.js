@@ -9,11 +9,14 @@ Component({
     text: {
       type: String
     },
-    listType:{
-      type:Number
+    listType: {
+      type: Number
     },
-    leftIcon:{
-      type:String
+    leftIcon: {
+      type: String
+    },
+    appId: {
+      type: String
     }
   },
   /**
@@ -21,7 +24,7 @@ Component({
    */
   methods: {
     Callback(e) {
-      this.triggerEvent('cancel',e)
+      this.triggerEvent('cancel', e)
     }
   }
 })

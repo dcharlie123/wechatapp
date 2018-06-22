@@ -3,7 +3,8 @@
   "backgroundColor": "#F3F3F3",
   "component": true,
   "usingComponents": {
-    "v-list": "/components/list/list"
+    "v-list": "/components/list/list",
+    "modal": "../../components/modal/modal"
   }
 }
 

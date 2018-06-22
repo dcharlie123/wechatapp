@@ -1,3 +1,4 @@
+@import '../../components/modal/modal.wxss';
 .container{
   display: flex;
   flex-direction: column;
@@ -7,8 +8,6 @@
   margin: 0;
   padding: 0;
   background: #fff;
-  /* position: relative; */
-  /* z-index: 9; */
 }
 
 .content {
@@ -53,8 +52,8 @@
 
 .item-img {
   display: inline-block;
-  width: 55rpx;
-  height: 55rpx;
+  width: 40rpx;
+  height: 40rpx;
   vertical-align: top;
   margin-right: 15.6rpx;
 }
@@ -62,6 +61,5 @@
   width: 1rpx;
   height: 30rpx;
   background: #999;
-  /* box-shadow: 0 0 1px 0 #444; */
 }
 

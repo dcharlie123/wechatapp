@@ -1,9 +1,11 @@
 {
   "pages": [
     "pages/app/myapp",
+    "pages/videoDetail/videoDetail",
     "pages/search/search",
     "pages/listPage/listPage",
-    "pages/video-detail/video-detail"
+    "pages/likePage/likePage"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

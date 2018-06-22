@@ -48,8 +48,7 @@
   color: #fff;
   width: 85rpx;
   height: 36rpx;
-  background: #000;
-  opacity: 0.6;
+  background: rgba(0,0,0,.6);
   border-radius: 36rpx;
   text-align: center;
   line-height: 36rpx;
@@ -58,7 +57,7 @@
 /* video-des */
 
 .video-des {
-  padding: 27rpx 30rpx 51rpx;
+  padding: 30rpx 30rpx 51rpx;
 }
 
 .video_title {
@@ -78,9 +77,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* background: #ccc; */
 }
 
 .bottom-left {
+  padding-top: 10rpx;
   font-size: 22rpx;
   color: #999;
 }
@@ -104,15 +105,15 @@
 
 .like_btn {
   vertical-align: middle;
-  width: 36.6rpx;
-  height: 36.6rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .share {
   /* height: 46rpx; */
   /* width: 46rpx; */
   padding: 0;
-  margin: 16rpx 0 0 46rpx;
+  margin: 14rpx 0 0 46rpx;
   line-height: normal;
   background: transparent;
   /* border: 1px solid transparent; */
@@ -125,6 +126,6 @@
     content: none;
 }
 .shareImg{
-  width: 42rpx;
-  height: 42rpx;
+  width: 40rpx;
+  height: 40rpx;
 }

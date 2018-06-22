@@ -1,4 +1,5 @@
 <view class='container'>
+  <modal modal-show="{{is_modal_Show}}" modal-title="{{is_modal_title}}" modal-desc="{{is_modal_desc}}" modalSuretxt="{{modalSuretxt}}" modal-option="{{option}}" isGetUserInfo="{{isGetUserInfo}}" isback="{{true}}" bind:getInfo="getInfo"/>
   <view class='content'>
     <view wx:if='{{currentTab == 0}}'>
       <home class="home" />
@@ -8,7 +9,7 @@
     </view>
   </view>
 
-
+  
   <!-- 下面的两个tab -->
   <view class='bottom-tab'>
     <view class='tab-item {{currentTab == 0 ? "active" : ""}}' data-current="0" bindtap='switchTab'>
@@ -19,7 +20,6 @@
     <view class='tab-item {{currentTab == 1 ? "active" : ""}}' data-current="1" bindtap='switchTab'>
       <image src='{{currentTab == 1 ? "../../assets/icon40_user_on.png" : "../../assets/icon40_user.png"}}' class='item-img'></image>
       <text class='item-text {{currentTab == 1 ? "active" : ""}}'>我的</text>
-
     </view>
   </view>
 </view>

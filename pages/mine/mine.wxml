@@ -6,19 +6,19 @@
 
   <view class='content-wrapper' wx:if='{{currentTab === 0}}'><movie/></view>
   <view class='content-wrapper' wx:if='{{currentTab === 1}}'><music/></view> -->
+  <modal modal-show="{{is_modal_Show}}" modal-title="{{is_modal_title}}" modal-desc="{{is_modal_desc}}" modalSuretxt="{{modalSuretxt}}" modal-option="{{option}}" isGetUserInfo="{{isGetUserInfo}}" isback="{{true}}" bind:getInfo="getInfo"/>
   <view class='head'>
     <view class='info'>
-      <image src='' class='avatar-img'></image>
-      <view>aaaa</view>
+      <image src='{{userInfo.userInfo.avatarUrl}}' class='avatar-img' bindtap="getmyInfo"></image>
+      <view>{{userInfo.userInfo.nickName}}</view>
     </view>
-
   </view>
   <view class='lists'>
     <!-- <v-list icon="{{1}}" text="观看历史"></v-list> -->
-    <v-list icon="like" text="我的喜欢" bindtap="Mylike"></v-list>
+    <!-- <v-list icon="like" text="我的喜欢" bindtap="Mylike"></v-list> -->
   </view>
   <view class='otherMiniApp'>
-    <v-list icon="ndapp" text="南方都市报" listType="{{1}}"></v-list>
-    <v-list icon="epaper" text="南都数字报" listType="{{1}}"></v-list>
+    <v-list icon="ndapp" text="南方都市报" listType="{{1}}" appId="wxc87676483879184b"></v-list>
+    <v-list icon="epaper" text="南都数字报" listType="{{1}}" appId="wx9966b0a5b600d1fb"></v-list>
   </view>
 </view>

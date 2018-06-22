@@ -1,9 +1,10 @@
 @import '../../components/list/list.wxss';
+@import '../../components/modal/modal.wxss';
 .container{
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -47,7 +48,7 @@
 .avatar-img {
   width: 130rpx;
   height: 130rpx;
-  background: rebeccapurple;
+  background: #ccc;
   border-radius: 100%;
 }
 .lists{

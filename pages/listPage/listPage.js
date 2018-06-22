@@ -9,58 +9,133 @@ Page({
    * 页面的初始数据
    */
   data: {
-    videoList: null,
-    isLoading: true
+    videoList: null, //视频数据列表
+    isLoading: true, //正在加载
+    page: 1,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     wx.showShareMenu({
       withShareTicket: true
     })
-    // console.log(options);
-    var type = options.type,tp=decodeURIComponent(options.tp);
-    // console.log(u);
-    var navTitle = "N视频";
-    var navTitle=type;
+    if (this.data.isLoading) {
+      wx.showLoading()
+    }
+    var _this_ = this;
+    var type = options.type,
+      tp = decodeURIComponent(options.tp);
+    var navTitle
+    var pages = getCurrentPages()
+    var currentPage = pages[pages.length - 1] //获取当前页面的对象
+    var url = currentPage.route //当前页面url
+    var opts = currentPage.options //如果要获取url中所带的参数可以查看options
+    if (type) {
+      navTitle = type;
+    } else if (opts) {
+      navTitle = opts.type;
+    } else {
+      navTitle = "N视频";
+    }
     wx.setNavigationBarTitle({
       title: navTitle,
     })
-    if(this.data.isLoading){
-      wx.showLoading()
-    }
-    util.$get(`${host}${tp}`).then(res=>{
-      var list=res.data.data;
+    //获取数据
+    util.$get(`${host}${tp}`).then(res => {
+      var list = res.data.data;
       list.map(v => { // 转换一下时间
         v.ptime = util.formatTime(new Date(), 'yyyy-MM-dd');
+        v.summary = v.summary.slice(0, 80) + "...";
       })
       this.setData({
-        videoList:list
+        videoList: list
       })
       wx.hideLoading();
     })
   },
+  like(event) {
+    var e = event.currentTarget.dataset.list;
+    app.globalData.likeList.push(e.docid);
+    var _this_ = this;
+    if (!wx.getStorageSync('nd_usertoken')) {
+      this.setData({
+        is_modal_Show: true,
+        is_modal_title: '提示',
+        is_modal_desc: '需要您授权才能使用',
+        modalSuretxt: '授权',
+        isGetUserInfo: true,
+        option: {
+          success: 1
+        }
+      })
+    } else {
+      if (!e.favored) {
+        _this_.likeW(e.docid)
+        _this_.data.videoList.forEach((item, index, arr) => {
+          // console.log(item)
+          if (item.docid == e.docid) {
+            item.favored = 1;
+            item.favorcount = item.favorcount - 0 + 1;
+            _this_.setData({
+              videoList: arr
+            })
+          }
+        })
+      } else {
+        _this_.dislikeW(e.docid)
+        _this_.data.videoList.forEach((item, index, arr) => {
+          // console.log(item)
+          if (item.docid == e.docid) {
+            item.favored = 0;
+            item.favorcount -= 1;
+            _this_.setData({
+              videoList: arr
+            })
+          }
+        })
+      }
+    }
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  likeW(docid) {
+    return new Promise((resolve, reject) => {
+      var _this_ = this;
+      wx.request({
+        method: "POST",
+        url: "https://api.ndapp.oeeee.com/friends.php?m=NDvideo&a=postFavor",
+        data: {
+          docid: docid
+        },
+        header: {
+          "content-type": "application/x-www-form-urlencoded",
+          'ndusertoken': wx.getStorageSync('nd_usertoken')
+        },
+        success: resolve,
+        fail: reject
+      })
+    })
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+  dislikeW(docid) {
+    return new Promise((resolve, reject) => {
+      var _this_ = this;
+      wx.request({
+        method: "POST",
+        url: "https://api.ndapp.oeeee.com/friends.php?m=NDvideo&a=cancleFavor",
+        data: {
+          docid: docid
+        },
+        header: {
+          "content-type": "application/x-www-form-urlencoded",
+          'ndusertoken': wx.getStorageSync('nd_usertoken')
+        },
+        success: resolve,
+        fail: reject
+      })
+    })
 
   },
   bindPlayVideo(event) {
@@ -69,7 +144,7 @@ Page({
     // console.log(e);
     if (!_this_.data.userING) {
       wx.getNetworkType({
-        success: function (res) {
+        success: function(res) {
           // 返回网络类型, 有效值：
           // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
           var networkType = res.networkType; //网络状态
@@ -84,7 +159,7 @@ Page({
                   _this_.playVideo(e) //播放视频
                 }
               },
-              fail() { }
+              fail() {}
             })
           } else {
             _this_.playVideo(e) //wifi情况下自动播放
@@ -112,46 +187,42 @@ Page({
       [str]: false
     });
   },
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+  onPullDownRefresh: function() {
 
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage(ops){
-    if(ops.from==='button'){
-    }
-    var data=ops.target.dataset.item;
-    // console.log(data);
-    if(!data){
-      return
-    }
-    return {
-      title:data.title,
-      page: `/pages/video-detail/video-detail?title=${data.title}&id=${data.docid}&url=${data.video}`
+  onShareAppMessage(ops) {
+    if (ops.from === 'button') {
+      var data = ops.target.dataset.item;
+      if (!data) {
+        return
+      }
+      return {
+        title: data.title,
+        imgUrl: data.headimgurl,
+        path: `/pages/videoDetail/videoDetail?title=${data.title}&id=${data.docid}&url=${data.video}`
+      }
+    } else {
+      var pages = getCurrentPages()
+      var currentPage = pages[pages.length - 1] //获取当前页面的对象
+      var url = currentPage.route //当前页面url
+      var options = currentPage.options //如果要获取url中所带的参数可以查看options
+      console.log(options)
+      return {
+        title: 'N视频-' + options.type,
+        path: `pages/listPage/listPage?tp=${options.tp}`
+      }
     }
   },
   openDetail(event) {
     let item = event.currentTarget.dataset.list;
-    let url = `/pages/video-detail/video-detail?title=${item.title}&id=${item.docid}&url=${item.video}`;
+    let url = `/pages/videoDetail/videoDetail?title=${item.title}&id=${item.docid}&url=${item.video}`;
     wx.navigateTo({
       url: url
     })

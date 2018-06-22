@@ -3,13 +3,13 @@
 <view>
   <view class='search-wrapper'>
     <view class='search-box'>
-      <image class='search-icon'></image>
+      <image class='search-icon' src='/assets/icon30_search.png'></image>
       <input type='text' confirm-type="search" placeholder='搜索' placeholder-style='font-size:26rpx' class='search' bindconfirm="search"></input>
     </view>
     <text class='cancel' catchtap='cancel'>取消</text>
   </view>
   <view wx:if="{{searchData}}">
-    <template is="recommondlist"></template>
+    <template is="recommondlist" data="{{item,video}}" wx:for="{{videoList}}" wx:key="{{index}}"></template>
   </view>
   <view wx:elif="{{!searchData&&searchRecord}}" class='searchRecord'>
     <view class='searchRecord_title'>搜索历史</view>

@@ -1,0 +1,14 @@
+<view class='modal-section' wx:if="{{modalShow}}">
+    <view class='modal-opaci'></view>
+    <view class='modal-cont'>
+      <view class="modal-title">{{modalTitle}}</view>
+      <view class="modal-desc">{{modalDesc}}</view>
+      <!--普通确认按钮  -->
+      <view wx:if="{{!isContact&&!isGetUserInfo}}" class="modal-sure" catchtap='modal_click_Hidden'>{{modalSuretxt}}</view>
+      <!--客服  -->
+      <button wx:if="{{isContact}}" class="modal-sure formid-btn" open-type="contact" catchtap='modal_click_Hidden'>{{modalSuretxt}}</button>
+      <!--用户信息  -->
+       <button wx:if="{{isGetUserInfo}}" class="modal-sure formid-btn" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">{{modalSuretxt}}</button>
+      <view class="modal-cancel" catchtap='modal_click_Hidden' wx:if="{{showCancel}}">{{modalCanceltxt}}</view>    
+    </view>
+  </view>

@@ -9,6 +9,7 @@
   font-size: 40rpx;
   color: #222;
   line-height: 50rpx;
+  font-weight:600;
 }
 
 .video-detail {
@@ -22,6 +23,7 @@
 }
 
 .bottom-left {
+  padding-top: 10rpx;
   font-size: 22rpx;
   color: #999;
 }
@@ -45,8 +47,8 @@
 
 .like_btn {
   vertical-align: middle;
-  width: 36.6rpx;
-  height: 36.6rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .video_des {
@@ -73,6 +75,6 @@
     content: none;
 }
 .shareImg{
-  width: 42rpx;
-  height: 42rpx;
+  width: 40rpx;
+  height: 40rpx;
 }

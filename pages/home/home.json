@@ -3,6 +3,7 @@
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
   "usingComponents": {
-    "loadmore": "../../../components/loadmore/loadmore"
+    "loadmore": "../../../components/loadmore/loadmore",
+    "modal": "../../components/modal/modal"
   }
 }

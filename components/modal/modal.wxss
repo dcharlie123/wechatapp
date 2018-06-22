@@ -1,0 +1,65 @@
+/* 这里的样式只应用于这个自定义组件 */
+/*successModal.wxss*/
+.formid-btn {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    color: #303335;
+    font-size: 32rpx;
+    text-align: left;
+    line-height: normal;
+}
+
+.formid-btn::after {
+    border: none;
+}
+.modal-opaci {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  height: 100%;
+  width: 100%;
+  background: black;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+
+.modal-cont {
+    position: fixed;
+    z-index: 5000;
+    width: 80%;
+    max-width: 600rpx;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    border-radius: 6rpx;
+    overflow: hidden;
+    padding: 30rpx;
+}
+.modal-title{
+    font-size: 36rpx;
+    color: #000;
+}
+.modal-desc{
+    padding: 30rpx 0;
+    min-height: 80rpx;
+    font-size: 30rpx;
+    line-height: 1.3;
+    color: #808080;
+}
+.modal-sure{
+    text-align: right;
+    font-size: 32rpx;
+    color: #09BB07;
+    float: right;
+}
+.modal-cancel{
+    text-align: right;
+    font-size: 32rpx;
+    color: #9da2a6;
+    float: right;
+    margin-right: 20rpx;
+}

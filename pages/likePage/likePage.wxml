@@ -1,0 +1,9 @@
+<!--pages/likePage/likePage.wxml-->
+<view wx:if="{{!videoList}}" class="noData">空空如也~</view>
+<view wx:for="{{videoList}}" class='list'>
+  <view class='title'>{{item.title}}</view>
+  <view class='bottom'>
+    <view>收藏时间:{{item.jointime}}</view>
+    <view>发布时间:{{item.ptime}}</view>
+  </view>
+</view>

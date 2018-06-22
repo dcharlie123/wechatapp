@@ -1,6 +1,7 @@
 {
   "usingComponents":{
     "home": "../home/home",
-    "mine": "../mine/mine"
+    "mine": "../mine/mine",
+    "modal":"../../components/modal/modal"
   }
 }

@@ -19,10 +19,10 @@
           <text class='time'>{{item.ptime}}</text>
         </view>
         <view class='bottom-right'>
-          <view class='like'>
+          <!-- <view class='like'>
             <text class='like_num'>{{item.favorcount}}</text>
-            <image data-list="{{item}}" class='like_btn' src='{{video&&video.docid==item.docid&&video.liked ? "/assets/favorited.png" : "/assets/favorite.png"}}' mode='scaleToFill' catchtap='like'></image>
-          </view>
+            <image data-list="{{item}}" class='like_btn' src='{{item.favored ? "/assets/icon40_liked.png" : "/assets/icon40_like.png"}}' mode='scaleToFill' catchtap='like'></image>
+          </view> -->
           <button open-type='share' class='share' bindtap='share' data-item='{{item}}'>
             <image src="/assets/icon40_share.png" class='shareImg'></image>
           </button>

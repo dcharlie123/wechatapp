@@ -1,0 +1,26 @@
+<!--pages/app/home/video-detail/video-detail.wxml-->
+
+<view class='Video-box'>
+  <video id="myVideo" class='Video' src="{{videoUrl}}" controls autoplay></video>
+  <view class='video-detail'>
+    <text class='title'>{{video.title}}</text>
+    <view class='item-bottom'>
+      <view class='bottom-left'>
+        <text class='video-pub'>{{video.author}}</text>
+        <text class='time'>{{video.ptime}}</text>
+      </view>
+      <view class='bottom-right'>
+        <!-- <view class='like'>
+          <text class='like_num'>{{video.favorcount}}</text>
+          <image data-list="{{video}}" class='like_btn' src='{{video.favored ? "/assets/icon40_liked.png" : "/assets/icon40_like.png"}}' mode='scaleToFill' catchtap='like'></image>
+        </view> -->
+         <button open-type='share' class='share' bindtap='share' data-item='{{video}}'>
+            <image src="/assets/icon40_share.png" class='shareImg'></image>
+          </button>
+      </view>
+    </view>
+    <view class='video_des'>
+      {{video.summary}}
+    </view>
+  </view>
+</view>
