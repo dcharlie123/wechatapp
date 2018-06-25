@@ -47,7 +47,7 @@ Page({
       var list = res.data.data;
       list.map(v => { // 转换一下时间
         v.ptime = util.formatTime(new Date(), 'yyyy-MM-dd');
-        v.summary = v.summary.slice(0, 80) + "...";
+        // v.summary = v.summary.slice(0, 80) + "...";
       })
       this.setData({
         videoList: list
@@ -179,7 +179,7 @@ Page({
     this.setData({
       [str]: true
     });
-    console.log(this.data.video.video)
+    // console.log(this.data.video.video)
   },
   bindVideoEnded() {
     var str = 'video.showPlayer';
@@ -205,18 +205,18 @@ Page({
       }
       return {
         title: data.title,
-        imgUrl: data.headimgurl,
-        path: `/pages/videoDetail/videoDetail?title=${data.title}&id=${data.docid}&url=${data.video}`
+        imageUrl: data.imglist[0],
+        path: "/pages/app/myapp?sharePg=" + escape(`/pages/videoDetail/videoDetail?title=${data.title}&id=${data.docid}&url=${data.video}`)
       }
     } else {
       var pages = getCurrentPages()
       var currentPage = pages[pages.length - 1] //获取当前页面的对象
       var url = currentPage.route //当前页面url
       var options = currentPage.options //如果要获取url中所带的参数可以查看options
-      console.log(options)
+      // decodeURIComponent(options.tp)
       return {
         title: 'N视频-' + options.type,
-        path: `pages/listPage/listPage?tp=${options.tp}`
+        path: "/pages/app/myapp?sharePg=" + escape( `/pages/listPage/listPage?tp=${options.tp}`)
       }
     }
   },

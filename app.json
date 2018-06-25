@@ -4,7 +4,8 @@
     "pages/videoDetail/videoDetail",
     "pages/search/search",
     "pages/listPage/listPage",
-    "pages/likePage/likePage"
+    "pages/likePage/likePage",
+    "pages/history/history"
     
   ],
   "window": {

@@ -23,6 +23,11 @@ Component({
     video: null,
     userING: false,
     hadGetNav: false,
+    startY:0,
+    showDown:false,
+    lodingText:"下拉加载。。",
+    dis:0,
+    pullDown:false
   },
 
   created: function (options) {
@@ -85,7 +90,7 @@ Component({
         }
         list.map(v => { // 转换一下时间
           v.ptime = util.formatTime(new Date(), 'yyyy-MM-dd');
-          v.summary = v.summary.slice(0, 80) + "..."
+          // v.summary = v.summary.slice(0, 80) + "..."
         })
 
         if (type === 'up') { // 上拉处理
@@ -300,5 +305,40 @@ Component({
       })
 
     },
+    // touchstart(event){
+    //   console.log(event)
+    //   if(event.target.offsetTop==0&&!this.data.pullDown){
+    //     this.setData({
+    //       pullDown:true,
+    //       startY: Number(event.touches[0].pageY)
+    //     })
+    //   }
+      
+    // },
+    // touchmove(event){
+    //   var touch = event.touches[0];
+    //   if(this.data.pullDown&&!this.data.isLoading&&this.data.startY<touch.pageY){
+    //     console.log(2)
+    //     var dis=Number(touch.pageY)-this.data.startY;
+    //     this.setData({
+    //       dis:dis*0.5
+    //     })
+    //     if(dis>30&&touch.pageY>touch.pageX){
+    //       this.setData({
+    //         showDown:true
+    //       })
+    //     }
+    //   }
+    // },
+    // touchend(evnet){
+    //   if(this.data.pullDown){
+    //     this.setData({
+    //       dis:30,
+    //       lodingText:"加载中..."
+    //     })
+    //     this.getList("down")
+    //   }
+      
+    // }
   }
 })

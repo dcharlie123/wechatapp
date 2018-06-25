@@ -10,7 +10,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+    if (options.sharePg) {
+      console.log(unescape(options.sharePg));
+      wx.navigateTo({
+        url: unescape(options.sharePg)
+      })
+    }
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -101,8 +106,8 @@ Page({
       }
       return {
         title: data.title,
-        imgUrl: data.headimgurl,
-        path: `/pages/videoDetail/videoDetail?title=${data.title}&id=${data.docid}&url=${data.video}`
+        imageUrl: data.imglist[0],
+        path: "/pages/app/myapp?sharePg=" + escape(`/pages/videoDetail/videoDetail?title=${data.title}&id=${data.docid}&url=${data.video}`)
       }
     }
   }

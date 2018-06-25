@@ -15,7 +15,7 @@
   </view>
   <view class='lists'>
     <!-- <v-list icon="{{1}}" text="观看历史"></v-list> -->
-    <!-- <v-list icon="like" text="我的喜欢" bindtap="Mylike"></v-list> -->
+     <v-list icon="like" text="我的喜欢" bindtap="Mylike"></v-list> 
   </view>
   <view class='otherMiniApp'>
     <v-list icon="ndapp" text="南方都市报" listType="{{1}}" appId="wxc87676483879184b"></v-list>

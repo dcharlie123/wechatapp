@@ -9,13 +9,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    videoList:null
+    videoList:null,
+    page:1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.setNavigationBarTitle({
+      title: '我的喜欢'
+    })
     this.getfavor().then(res => {
       var list = res.data.data.list;
       // console.log(list)
@@ -30,7 +34,7 @@ Page({
         videoList: list
       })
       wx.hideLoading();
-      console.log(this.data.videoList);
+      // console.log(this.data.videoList);
     })
   },
   getfavor() {

@@ -72,10 +72,23 @@
   justify-content: center;
   align-items: center;
   width: 20%;
-  /* width: 40px; */
-  /* height: 75rpx; */
 }
 .navImg{
   width: 50rpx;
   height:50rpx;
 }
+/* .scroll_box{
+  width: 100%;
+  height: 100rpx;
+  overflow: hidden;
+  padding: 20rpx;
+  background: #fff;
+  white-space: nowrap;
+  font-size: 28rpx;
+  }
+  .item_list{
+  width: 20%;
+  height: 50px;
+  margin-right: 23rpx;
+  display: inline-block;
+  } */

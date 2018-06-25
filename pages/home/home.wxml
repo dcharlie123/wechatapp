@@ -5,13 +5,21 @@
     <text class='index_searchText'>搜索</text>
   </view> -->
   <modal modal-show="{{is_modal_Show}}" modal-title="{{is_modal_title}}" modal-desc="{{is_modal_desc}}" modalSuretxt="{{modalSuretxt}}" modal-option="{{option}}" isGetUserInfo="{{isGetUserInfo}}" isback="{{true}}" bind:getInfo="getInfo" />
+  <!-- <view wx:if="{{showDown}}" style="height: {{dis}}px;">{{lodingText}}</view> -->
   <view class='navBar' wx:if="navData.list">
-    <view catchtap='goList' data-type='{{item.title}}' data-u='{{item.url}}' class='navItem' wx:for='{{navData.list}}'>
+    <view catchtap='goList' data-type='{{item.title}}' data-u='{{item.url}}' class='navItem' wx:for='{{navData.list}}' wx:key="itme.title">
       <image src="{{item.imgurl}}" class='navImg'></image>
       <view class='navText'>{{item.title}}</view>
     </view>
   </view>
-
+  <!-- <view class="scroll_box" wx:if="navData.list"> 
+    <scroll-view class="scroll-view_x" scroll-x style="width: auto;overflow:hidden;">
+      <view class="item_list"  catchtap='goList' data-type='{{item.title}}' data-u='{{item.url}}' wx:for='{{navData.list}}'>
+        <image src="{{item.imgurl}}" class="navImg" mode="aspectFill"></image>
+        <view class="navText">{{item.title}}</view>
+      </view>
+    </scroll-view>
+  </view> -->
   <template is="recommondlist" data="{{item,video}}" wx:for="{{videoList}}" wx:key="{{index}}"></template>
   <loadmore wx:if="{{isLoading}}" />
 </view>

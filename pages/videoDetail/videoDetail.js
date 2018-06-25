@@ -170,8 +170,8 @@ Page({
     }
     return {
       title: this.data.video.title,
-      imgUrl: this.data.video.headimgurl,
-      path: `/pages/videoDetail/videoDetail?title=${this.data.video.title}&id=${this.data.video.docid}&url=${this.data.video.video}`
+      imageUrl: this.data.video.imglist[0],
+      path: "/pages/app/myapp?sharePg="+escape(`/pages/videoDetail/videoDetail?title=${this.data.video.title}&id=${this.data.video.docid}&url=${this.data.video.video}`)
     }
   }
 })
