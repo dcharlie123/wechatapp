@@ -69,15 +69,17 @@ Page({
       })
     } else {
       if (!e.favored) {
-        _this_.likeW(e.docid)
-        var data = this.data.video;
+        util.debounce(_this_.likeW(e.docid))
+        var data = _this_.data.video;
         data.favored = 1
         data.favorcount = data.favorcount - 0 + 1;
-        this.setData({
+        _this_.setData({
           video: data
         })
-      } else {
-        _this_.dislikeW(e.docid)
+        
+        
+      } else{
+        util.debounce(_this_.dislikeW(e.docid))
         var data = this.data.video;
         data.favored = 0;
         data.favorcount = data.favorcount - 1;

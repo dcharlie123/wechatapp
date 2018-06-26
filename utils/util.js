@@ -18,7 +18,47 @@ function timestampToTime(timestamp) {
   var s = (date.getSeconds() < 10 ? '0' + (date.getSeconds()) : date.getSeconds());;
   return Y + M + D + h + m;
 };
+function debounce(fn, delay = 1000) {
+  let timer;
 
+  // 返回一个函数，这个函数会在一个时间区间结束后的 delay 毫秒时执行 func 函数
+  return function () { 
+
+    // 保存函数调用时的上下文和参数，传递给func
+    var context = this
+    var args = arguments
+
+    // 函数被调用，清除定时器
+    clearTimeout(timer)
+
+    // 当返回的函数被最后一次调用后（也就是用户停止了某个连续的操作），
+    // 再过 delay 毫秒就执行 func
+    timer = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  }
+};
+function throttle(func, wait = 100) {
+  // 利用闭包保存定时器和上次执行时间
+  let timer = null;
+  let previous; // 上次执行时间
+  return function() {
+      // 保存函数调用时的上下文和参数，传递给 fn
+      const context = this;
+      const args = arguments;
+      const now = +new Date();
+      if (previous && now < previous + wait) { // 周期之中
+          clearTimeout(timer);
+        timer = setTimeout(function() {
+            previous = now;
+            func.apply(context, args);
+        }, wait);
+      } else {
+          previous = now;
+          func.apply(context, args);
+      }
+  };
+};
 function json2Form(json) {
   var str = [];
   for (var p in json) {
@@ -86,8 +126,10 @@ module.exports = {
   formatTime: formatTime,
   timestampToTime,
   playVideo,
+  throttle,
   $get,
   json2Form,
+  debounce,
   getQueryString,
   getCurrentPageUrl: getCurrentPageUrl,
   getCurrentPageUrlWithArgs: getCurrentPageUrlWithArgs
