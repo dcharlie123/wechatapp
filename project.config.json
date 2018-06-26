@@ -12,8 +12,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.8",
-	"appid": "wx2260094fcd9acf03",
-	"projectname": "2",
+	"appid": "wxfbb8bac1cbd1537d",
+	"projectname": "nsp",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -41,15 +41,15 @@
 					"query": ""
 				},
 				{
-					"id": 1,
-					"name": "video-detail",
-					"pathName": "pages/app/home/video-detail/video-detail",
+					"id": -1,
+					"name": "1",
+					"pathName": "pages/likePage/likePage",
 					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "1",
-					"pathName": "pages/likePage/likePage",
+					"name": "history",
+					"pathName": "pages/history/history",
 					"query": ""
 				}
 			]

@@ -1,3 +1,4 @@
 <!--pages/listPage/listPage.wxml-->
 <import src="/components/recommondlist.wxml"></import>
+<modal modal-show="{{is_modal_Show}}" modal-title="{{is_modal_title}}" modal-desc="{{is_modal_desc}}" modalSuretxt="{{modalSuretxt}}" modal-option="{{option}}" isGetUserInfo="{{isGetUserInfo}}" isback="{{true}}"  bind:getInfo="getInfo"/>
 <template is="recommondlist" data="{{item,video}}" wx:for="{{videoList}}" wx:key="{{index}}"></template>

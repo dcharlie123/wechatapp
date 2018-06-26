@@ -23,11 +23,12 @@ Component({
     video: null,
     userING: false,
     hadGetNav: false,
-    startY:0,
-    showDown:false,
-    lodingText:"下拉加载。。",
-    dis:0,
-    pullDown:false
+    startY: 0,
+    showDown: false,
+    lodingText: "下拉加载。。",
+    dis: 0,
+    pullDown: false,
+    detailItem:null
   },
 
   created: function (options) {
@@ -38,7 +39,6 @@ Component({
   },
   ready: function () {
     this.videoContext = wx.createVideoContext('myVideo');
-
   },
   /**
    * 组件的方法列表
@@ -81,7 +81,7 @@ Component({
       })
     },
     processData(type, list) {
-      if (list.length) {//如果有数据
+      if (list.length) { //如果有数据
         //如果数据为Nav数据直接取出
         if (list[0].flag == "circularcard") {
           this.setData({
@@ -89,7 +89,7 @@ Component({
           })
         }
         list.map(v => { // 转换一下时间
-          v.ptime = util.formatTime(new Date(), 'yyyy-MM-dd');
+          v.ptime = util.timestampToTime(v.ptime);
           // v.summary = v.summary.slice(0, 80) + "..."
         })
 
@@ -98,10 +98,10 @@ Component({
             videoList: this.data.videoList.concat(list),
           })
         } else { // 下拉出来
-            this.setData({
-              videoList: list
-            })
-            wx.stopPullDownRefresh()
+          this.setData({
+            videoList: list
+          })
+          wx.stopPullDownRefresh()
         }
         this.setData({
           page: ++this.data.page,
@@ -152,7 +152,7 @@ Component({
                     _this_.playVideo(e) //播放视频
                   }
                 },
-                fail() { }
+                fail() {}
               })
             } else {
               _this_.playVideo(e) //wifi情况下自动播放
@@ -196,9 +196,9 @@ Component({
     like(event) {
       var e = event.currentTarget.dataset.list;
       // console.log(e);
-      app.globalData.likeList.push(e.docid);
+      // app.globalData.likeList.push(e.docid);
       var _this_ = this;
-      if (!wx.getStorageSync('nd_usertoken')) {//如果没登录
+      if (!wx.getStorageSync('nd_usertoken')) { //如果没登录
         //弹出授权
         this.setData({
           is_modal_Show: true,
@@ -211,18 +211,18 @@ Component({
           }
         })
       } else {
-        if (!e.favored) {//收藏
+        if (!e.favored) { //收藏
           _this_.likeW(e.docid)
           _this_.data.videoList.forEach((item, index, arr) => {
             if (item.docid == e.docid) {
               item.favored = 1;
-              item.favorcount = item.favorcount - 0 + 1;//-0是为了转化为数字类型
+              item.favorcount = item.favorcount - 0 + 1; //-0是为了转化为数字类型
               _this_.setData({
                 videoList: arr
               })
             }
           })
-        } else {//取消收藏
+        } else { //取消收藏
           _this_.dislikeW(e.docid)
           _this_.data.videoList.forEach((item, index, arr) => {
             if (item.docid == e.docid) {
@@ -236,7 +236,7 @@ Component({
         }
       }
     },
-    getInfo() {//授权后设置数据
+    getInfo() { //授权后设置数据
       this.setData({
         userInfo: wx.getStorageSync("userInfo"),
         token: wx.getStorageSync('nd_usertoken')
@@ -250,12 +250,23 @@ Component({
     },
     //进入详情页面
     openDetail(event) {
-      let item = event.currentTarget.dataset.list
-      let url = `/pages/videoDetail/videoDetail?title=${item.title}&id=${item.docid}&url=${item.video}`;
-      wx.navigateTo({
-        url: url
-      })
+      // this.setData({
+      //   detailItem:event
+      // })
+      // if (!wx.getStorageSync('nd_usertoken')) { //如果没登录
+      //   //弹出授权
+      //   app.showAuthM(this,"openDetail");
+      // } else {
+      //   app.openDetail(event);
+      //   // console.log(this.data.detailItem)
+      // }
+      app.openDetail(event);
     },
+    // refuseOpenDetailCB(){
+    //   wx.navigateTo({
+    //     url:"/pages/videoDetail/videoDetail"
+    //   })
+    // },
     //进入列表页
     goList(event) {
       var listType = event.currentTarget.dataset.type;
@@ -313,7 +324,7 @@ Component({
     //       startY: Number(event.touches[0].pageY)
     //     })
     //   }
-      
+
     // },
     // touchmove(event){
     //   var touch = event.touches[0];
@@ -338,7 +349,7 @@ Component({
     //     })
     //     this.getList("down")
     //   }
-      
+
     // }
   }
 })

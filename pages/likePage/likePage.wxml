@@ -1,6 +1,6 @@
 <!--pages/likePage/likePage.wxml-->
 <view wx:if="{{!videoList.length}}" class="noData">空空如也~</view>
-<view wx:for="{{videoList}}" class='list' data-item="video">
+<view wx:for="{{videoList}}" class='list' data-item="{{item}}" bindtap="openDetail" wx:key="item.docid">
   <view class='title'>{{item.title}}</view>
   <view class='bottom'>
     <view>{{item.jointime}}</view>

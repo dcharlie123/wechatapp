@@ -1,5 +1,5 @@
 <!--pages/app/home/video-detail/video-detail.wxml-->
-
+<modal modal-show="{{is_modal_Show}}" modal-title="{{is_modal_title}}" modal-desc="{{is_modal_desc}}" modalSuretxt="{{modalSuretxt}}" modal-option="{{option}}" isGetUserInfo="{{isGetUserInfo}}" isback="{{true}}" from="{{from}}" bind:getInfo="getInfo" bind:refuseOpenDetailCB="refuseOpenDetailCB"/>
 <view class='Video-box'>
   <video id="myVideo" class='Video' src="{{videoUrl}}" controls autoplay></video>
   <view class='video-detail'>

@@ -1,5 +1,7 @@
 // pages/app/home/video-detail/video-detai.js
+
 import util from '../../utils/util.js'
+
 var app = getApp();
 const host = getApp().globalData.host;
 Page({
@@ -22,17 +24,27 @@ Page({
       title: options.title
     })
     this.setData({
-      id: options.id,
-      videoUrl: options.url
+      id: options.id,      
     })
+    if(options.url){
+      this.setData({
+        videoUrl: options.url      
+      })
+    }
     util.$get(`${host}m=Doc&a=info`, {
-      id: this.data.id
+      id: this.data.id,
+      requestfrom:'webapp'
     }).then(res => {
       var list = res.data.data;
-      list.ptime = util.formatTime(new Date(), 'yyyy-MM-dd');
+      list.ptime = util.timestampToTime(list.ptime);
       this.setData({
-        video: list
+        video: list,
       })
+      if(!this.data.videoUrl){
+        this.setData({
+          videoUrl:list.video
+        })
+      }
       wx.setNavigationBarTitle({
         title: list.title
       })
@@ -41,7 +53,7 @@ Page({
   },
   like(event) {
     var e = event.currentTarget.dataset.list;
-    console.log(e);
+    // console.log(e);
     app.globalData.likeList.push(e.docid);
     var _this_ = this;
     if (!wx.getStorageSync('nd_usertoken')) {
@@ -86,7 +98,7 @@ Page({
         },
         header: {
           "content-type": "application/x-www-form-urlencoded",
-          'ndusertoken': wx.getStorageSync('nd_usertoken')
+          'ndusertoken': wx.getStorageSync('nd_usertoken'),
         },
         success: resolve,
         fail: reject
@@ -160,13 +172,7 @@ Page({
    */
   onShareAppMessage(ops) {
     if (ops.from === 'button') {
-      // console.log(ops)
       var data = ops.target.dataset.item;
-      console.log(this.data.video);
-      // if(!data){
-      //   return
-      // }
-      
     }
     return {
       title: this.data.video.title,

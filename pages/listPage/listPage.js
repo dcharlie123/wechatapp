@@ -1,4 +1,5 @@
 // pages/listPage/listPage.js
+
 import util from '../../utils/util.js'
 
 const host = getApp().globalData.host;
@@ -46,7 +47,7 @@ Page({
     util.$get(`${host}${tp}`).then(res => {
       var list = res.data.data;
       list.map(v => { // 转换一下时间
-        v.ptime = util.formatTime(new Date(), 'yyyy-MM-dd');
+        v.ptime = util.timestampToTime(v.ptime);
         // v.summary = v.summary.slice(0, 80) + "...";
       })
       this.setData({
@@ -74,7 +75,6 @@ Page({
       if (!e.favored) {
         _this_.likeW(e.docid)
         _this_.data.videoList.forEach((item, index, arr) => {
-          // console.log(item)
           if (item.docid == e.docid) {
             item.favored = 1;
             item.favorcount = item.favorcount - 0 + 1;
@@ -86,7 +86,6 @@ Page({
       } else {
         _this_.dislikeW(e.docid)
         _this_.data.videoList.forEach((item, index, arr) => {
-          // console.log(item)
           if (item.docid == e.docid) {
             item.favored = 0;
             item.favorcount -= 1;
@@ -141,14 +140,12 @@ Page({
   bindPlayVideo(event) {
     var _this_ = this;
     var e = event.currentTarget.dataset.item;
-    // console.log(e);
     if (!_this_.data.userING) {
       wx.getNetworkType({
         success: function(res) {
           // 返回网络类型, 有效值：
           // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
           var networkType = res.networkType; //网络状态
-          // console.log(networkType)
           if (networkType !== "wifi") { //如果不是wifi提醒用户
             wx.showModal({
               title: '提示',
@@ -179,7 +176,6 @@ Page({
     this.setData({
       [str]: true
     });
-    // console.log(this.data.video.video)
   },
   bindVideoEnded() {
     var str = 'video.showPlayer';
@@ -216,7 +212,7 @@ Page({
       // decodeURIComponent(options.tp)
       return {
         title: 'N视频-' + options.type,
-        path: "/pages/app/myapp?sharePg=" + escape( `/pages/listPage/listPage?tp=${options.tp}`)
+        path: "/pages/app/myapp?sharePg=" + escape( `/pages/listPage/listPage?type=${options.type}&tp=${options.tp}`)
       }
     }
   },

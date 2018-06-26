@@ -1,2 +1,15 @@
 <!--pages/history/history.wxml-->
-<text>pages/history/history.wxml</text>
+<!--pages/likePage/likePage.wxml-->
+<view wx:for="{{videoList}}" class='list' bindtap="openDetail" data-list="{{item}}" wx:key="{{item.docid}}">
+    <view>
+        <image src="{{item.titleimg}}" class="titleImg"></image>
+    </view>
+    <view class="itemText">
+        <view class='title'>{{item.title}}</view>
+        <view class="rest">
+            <view class="nickname">{{item.nickname}}</view>
+            <view class="ctime">{{item.ctime}}</view>
+        </view>
+    </view>
+</view>
+<view wx:if="{{!videoList.length&&!isLoading}}" class="noData">空空如也~</view>

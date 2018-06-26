@@ -45,6 +45,9 @@ Component({
         isback: {
             type: Boolean,
             value: false
+        },
+        from:{
+            type:String
         }
     },
 
@@ -66,12 +69,15 @@ Component({
             })
             if (this.data.isGetUserInfo) {
                 app.refuseLogin();
+                // if(this.data.from=="openDetail"){
+                //     this.triggerEvent("refuseOpenDetailCB")
+                // }
             }
-            if (this.data.isback) {
-                wx.navigateBack({
-                    delta: 1
-                })
-            }
+            // if (this.data.isback) {
+            //     wx.navigateBack({
+            //         delta: 1
+            //     })
+            // }
         },
         onGotUserInfo: function (e) {
             //

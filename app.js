@@ -2,7 +2,8 @@
 App({
   onLaunch: function () {
     // 展示本地存储能力
-    var token = wx.getStorageSync('nd_usertoken'), userInfo = wx.getStorageSync("userInfo");
+    var token = wx.getStorageSync('nd_usertoken'),
+      userInfo = wx.getStorageSync("userInfo");
     this.globalData.token = token;
     this.globalData.userInfo = userInfo;
   },
@@ -44,11 +45,32 @@ App({
       data: new Date().getTime()
     })
   },
+  //弹授权窗
+  showAuthM(_this,from) {
+    _this.setData({
+      is_modal_Show: true,
+      is_modal_title: '提示',
+      is_modal_desc: '需要您授权才能使用',
+      modalSuretxt: '授权',
+      isGetUserInfo: true,
+      from:from,
+      option: {
+        success: 1
+      }
+    })
+  },
+  openDetail(event) {
+    let item = event.currentTarget.dataset.list;
+    let url = `/pages/videoDetail/videoDetail?title=${item.title}&id=${item.docid}&url=${item.video}`;
+    wx.navigateTo({
+      url: url
+    })
+  },
   globalData: {
     userInfo: null,
     host: "https://api.ndapp.oeeee.com/friends.php?",
     token: null,
-    likeList:[]
+    likeList: []
   }
 
 })

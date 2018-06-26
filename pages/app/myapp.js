@@ -19,20 +19,11 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
-    // if (!app.globalData.token || !app.globalData.userInfo) {
-    //   if (new Date().getTime() - wx.getStorageSync('nd_lastlogin')>36000) {
-    //     this.setData({
-    //       is_modal_Show: true,
-    //       is_modal_title: '提示',
-    //       is_modal_desc: '需要您授权才能使用',
-    //       modalSuretxt: '授权',
-    //       isGetUserInfo: true,
-    //       option:{
-    //        success:1
-    //       }
-    //     })
-    //   }
-    // }
+    if (!app.globalData.token || !app.globalData.userInfo) {
+      if (new Date().getTime() - wx.getStorageSync('nd_lastlogin')>36000) {
+        app.showAuthM(this);
+      }
+    }
   },
   getInfo(){
     this.setData({
