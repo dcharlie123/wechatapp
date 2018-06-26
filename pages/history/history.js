@@ -105,10 +105,10 @@ Page({
           videoList:list
         })
         wx.stopPullDownRefresh();
-        wx.showToast({
-          icon:"success",
-          title:res.data.errmsg
-        })
+        // wx.showToast({
+        //   icon:"success",
+        //   title:res.data.errmsg
+        // })
       }else{
         wx.showToast({
           icon:"none",

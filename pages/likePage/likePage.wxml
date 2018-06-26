@@ -1,8 +1,19 @@
 <!--pages/likePage/likePage.wxml-->
 <view wx:if="{{!videoList.length}}" class="noData">空空如也~</view>
-<view wx:for="{{videoList}}" class='list' data-item="{{item}}" bindtap="openDetail" wx:key="item.docid">
+<!-- <view wx:for="{{videoList}}" class='list' data-item="{{item}}" bindtap="openDetail" wx:key="item.docid">
   <view class='title'>{{item.title}}</view>
   <view class='bottom'>
     <view>{{item.jointime}}</view>
+  </view>
+</view> -->
+<view wx:for="{{videoList}}" class='list' bindtap="openDetail" data-list="{{item}}" wx:key="{{item.docid}}">
+  <view>
+      <image src="{{item.titleimg}}" class="titleImg"></image>
+  </view>
+  <view class="itemText">
+      <view class='title'>{{item.title}}</view>
+      <view class="rest">
+          <view class="ctime">{{item.jointime}}</view>
+      </view>
   </view>
 </view>

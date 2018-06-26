@@ -7,7 +7,7 @@
     <view class="itemText">
         <view class='title'>{{item.title}}</view>
         <view class="rest">
-            <view class="nickname">{{item.nickname}}</view>
+            <!-- <view class="nickname">{{item.nickname}}</view> -->
             <view class="ctime">{{item.ctime}}</view>
         </view>
     </view>
