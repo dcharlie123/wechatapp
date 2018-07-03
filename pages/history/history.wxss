@@ -4,11 +4,11 @@
     /* height: 160rpx; */
     justify-content: space-around;
     align-items: center;
-    padding:30rpx 15rpx;
+    padding:20rpx 30rpx;
     border-bottom: 1px solid #fcfcfc;
 }
 .titleImg{
-    width: 200rpx;
+    width: 250rpx;
     height: 140rpx;
     border-radius: 6rpx;
     background: #ccc;
@@ -19,7 +19,7 @@
     flex:0 1 500rpx;
     width: 500rpx;
     height: 140rpx;
-    margin-left: 15rpx;
+    margin-left: 20rpx;
     display: flex;
     flex-direction: column;
     justify-content:space-between;
